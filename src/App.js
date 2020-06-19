@@ -1,13 +1,28 @@
-import React from "react";
-import SuperHeroCard from "./components/SuperHeroCard";
+import React, { useEffect, useState } from "react";
+import CardsList from "./components/CardsList";
 
 function App() {
-  return (
-    <SuperHeroCard
-      name="Captain America"
-      image="http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087/portrait_uncanny.jpg"
-    />
-  );
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetchHeroes();
+  }, []);
+
+  async function fetchHeroes() {
+    try {
+      const response = await fetch(
+        "https://gateway.marvel.com/v1/public/characters?orderBy=-modified&limit=20&apikey=a2ac89dc440fae737de7ea65bf7b3f11"
+      );
+      const json = await response.json();
+      const { data } = json;
+      setItems(data.results);
+      console.log(json);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  return <CardsList items={items} />;
 }
 
 export default App;
