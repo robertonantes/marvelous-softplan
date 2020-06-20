@@ -4,24 +4,29 @@ import { debounce } from "throttle-debounce";
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
 import { Container } from "./Search.styles";
+import * as services from "./Search.services";
 
-const debouncedFetch = debounce(500, fetchTerm);
-function fetchTerm(f) {
-  console.log(f);
-}
 const Search = () => {
   const [term, setTerm] = useState("");
+  const [error, setError] = useState(null);
+  const [results, setResults] = useState([]);
   const [searching, setSearching] = useState(false);
 
-  function shouldSearch() {
-    return term.trim().length >= 3;
-  }
-
   useEffect(() => {
-    if (shouldSearch()) {
-      debouncedFetch(term);
+    if (services.isSearchAllowed(term)) {
+      fetchCharacters();
     }
   }, [term]);
+
+  function fetchCharacters() {
+    setSearching(true);
+
+    services.debouncedFetch(term, {
+      onSuccess: (data) => setResults(data),
+      onError: (error) => setError(error),
+      onDone: () => setSearching(false),
+    });
+  }
 
   function onTermChange(e) {
     const { target } = e;
@@ -29,13 +34,11 @@ const Search = () => {
   }
 
   function renderSearchResults() {
-    const display = term.trim().length >= 3;
-
-    if (!display) {
+    if (!services.isSearchAllowed(term)) {
       return null;
     }
 
-    return <SearchResults loading={searching} />;
+    return <SearchResults loading={searching} results={results} />;
   }
 
   return (
