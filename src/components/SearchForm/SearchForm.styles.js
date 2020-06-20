@@ -4,10 +4,11 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
 `;
 
 export const TextInput = styled.input`
-  width: 400px;
+  flex: 1;
   height: 40px;
   background-color: #232323;
   border: 0;

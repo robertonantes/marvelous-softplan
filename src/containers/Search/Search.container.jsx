@@ -3,7 +3,7 @@ import { debounce } from "throttle-debounce";
 
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
-import { Container } from "./Search.styles";
+import { Container, Logo } from "./Search.styles";
 import * as services from "./Search.services";
 
 const Search = () => {

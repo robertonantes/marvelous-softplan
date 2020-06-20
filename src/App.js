@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CardsList from "./components/CardsList";
-import Search from "./containers/Search";
+import Header from "./components/Header";
 
+import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "./App.css";
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <>
-      <Search />
+      <Header />
       <CardsList items={items} />
     </>
   );
