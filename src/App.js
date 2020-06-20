@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardsList from "./components/CardsList";
+import Search from "./containers/Search";
 
 import "./App.css";
 
@@ -24,7 +25,12 @@ function App() {
     }
   }
 
-  return <CardsList items={items} />;
+  return (
+    <>
+      <Search />
+      <CardsList items={items} />
+    </>
+  );
 }
 
 export default App;
