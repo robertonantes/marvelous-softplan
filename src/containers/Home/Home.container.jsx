@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 import CardsList from "../../components/CardsList";
+import HomeSkeleton from "./fragments/HomeSkeleton.fragment";
+import { Title } from "./Home.styles";
 
 const Home = () => {
   const [items, setItems] = useState([]);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     fetchCharacters();
@@ -18,10 +25,25 @@ const Home = () => {
       setItems(data.results);
     } catch (e) {
       console.log(e);
+    } finally {
+      setReady(true);
     }
   }
 
-  return <CardsList items={items} />;
+  if (!ready) {
+    return <HomeSkeleton />;
+  }
+
+  return (
+    <Container className="mt-5">
+      <Row>
+        <Col>
+          <Title>Last updated Characters</Title>
+          <CardsList items={items} />;
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Home;

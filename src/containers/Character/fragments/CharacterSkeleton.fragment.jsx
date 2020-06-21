@@ -16,7 +16,7 @@ const LeftContent = styled.div`
   flex-direction: column;
 `;
 
-const Skeleton = () => {
+const CharacterSkeleton = () => {
   return (
     <Container data-testid="character-skeleton">
       <Row>
@@ -50,4 +50,4 @@ const Skeleton = () => {
   );
 };
 
-export default Skeleton;
+export default CharacterSkeleton;

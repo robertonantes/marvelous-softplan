@@ -16,12 +16,8 @@ const CardsList = ({ items }) => {
       {items.map((i) => {
         const { id, name, thumbnail } = i;
         return (
-          <Item onClick={() => history.push(`/character/${id}`)}>
-            <SuperHeroCard
-              name={name}
-              image={assembleImageUrl(thumbnail)}
-              key={id}
-            />
+          <Item onClick={() => history.push(`/character/${id}`)} key={id}>
+            <SuperHeroCard name={name} image={assembleImageUrl(thumbnail)} />
           </Item>
         );
       })}

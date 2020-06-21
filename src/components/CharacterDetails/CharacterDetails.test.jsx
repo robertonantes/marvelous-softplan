@@ -37,31 +37,11 @@ describe("CharacterDetails Component", () => {
     expect(screen.getByText(/no description available/i)).toBeInTheDocument();
   });
 
+  //Snapshot testing (This is the only time its used in this project);
   it("Renders character info", () => {
     const data = mockData();
-    render(<CharacterDetails data={data} />);
+    const { asFragment } = render(<CharacterDetails data={data} />);
 
-    expect(screen.getByText(data.name)).toBeInTheDocument();
-    expect(screen.getByTestId("comics")).toHaveTextContent(
-      `Comics: ${data.comics.available}`
-    );
-
-    expect(screen.getByTestId("series")).toHaveTextContent(
-      `Series: ${data.series.available}`
-    );
-
-    expect(screen.getByTestId("stories")).toHaveTextContent(
-      `Stories: ${data.stories.available}`
-    );
-
-    expect(screen.getByTestId("events")).toHaveTextContent(
-      `Events: ${data.events.available}`
-    );
-
-    const expectedImage = `${data.thumbnail.path}.${data.thumbnail.extension}`;
-    expect(screen.getByTestId("character-image")).toHaveAttribute(
-      "src",
-      expectedImage
-    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });

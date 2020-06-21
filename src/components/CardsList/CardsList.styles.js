@@ -13,4 +13,5 @@ export const Item = styled.li`
   width: calc(20% - 8px);
   flex-shrink: 0;
   margin-bottom: 8px;
+  margin-right: 8px;
 `;

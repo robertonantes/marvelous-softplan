@@ -11,7 +11,7 @@ import {
 
 import CharacterDetails from "../../components/CharacterDetails";
 import SeriesList from "../../components/SeriesList";
-import Skeleton from "./fragments/Skeleton.fragment";
+import CharacterSkeleton from "./fragments/CharacterSkeleton.fragment";
 
 const Character = () => {
   const { id } = useParams();
@@ -20,26 +20,26 @@ const Character = () => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    async function fetchData() {
+      const response = await fetchCharacterDetails(id, {});
+      setData(response.data[0]);
+    }
+
+    async function fetchSeries() {
+      const response = await fetchCharacterSeries(id, {
+        limit: 24,
+        orderBy: "-modified",
+      });
+      setSeries(response.data);
+      setReady(true);
+    }
+
     fetchData();
     fetchSeries();
-  }, []);
-
-  async function fetchData() {
-    const response = await fetchCharacterDetails(id, {});
-    setData(response.data[0]);
-  }
-
-  async function fetchSeries() {
-    const response = await fetchCharacterSeries(id, {
-      limit: 24,
-      orderBy: "-modified",
-    });
-    setSeries(response.data);
-    setReady(true);
-  }
+  }, [id]);
 
   if (!ready) {
-    return <Skeleton />;
+    return <CharacterSkeleton />;
   }
 
   return (
