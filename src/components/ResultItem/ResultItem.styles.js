@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
   width: 80px;
+  height: 80px;
   border: 2px solid #fff;
 `;
 

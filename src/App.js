@@ -1,36 +1,22 @@
-import React, { useEffect, useState } from "react";
-import CardsList from "./components/CardsList";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import Header from "./components/Header";
+import Home from "./containers/Home";
+import Character from "./containers/Character";
 
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "./App.css";
 
 function App() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    fetchHeroes();
-  }, []);
-
-  async function fetchHeroes() {
-    try {
-      const response = await fetch(
-        "https://gateway.marvel.com/v1/public/characters?orderBy=-modified&limit=20&apikey=a2ac89dc440fae737de7ea65bf7b3f11"
-      );
-      const json = await response.json();
-      const { data } = json;
-      setItems(data.results);
-      console.log(json);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <CardsList items={items} />
-    </>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/character/:id" component={Character} exact />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
