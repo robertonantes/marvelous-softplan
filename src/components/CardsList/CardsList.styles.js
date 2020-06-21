@@ -14,4 +14,5 @@ export const Item = styled.li`
   flex-shrink: 0;
   margin-bottom: 8px;
   margin-right: 8px;
+  cursor: pointer;
 `;

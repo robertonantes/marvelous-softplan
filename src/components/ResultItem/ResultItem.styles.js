@@ -5,9 +5,15 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 200ms;
 
   :last-child {
     margin-bottom: 0;
+  }
+
+  :hover {
+    background-color: #292929;
   }
 `;
 

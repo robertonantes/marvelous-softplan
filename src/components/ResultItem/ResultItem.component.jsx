@@ -1,9 +1,9 @@
 import React from "react";
 import { Wrapper, Image, Name } from "./ResultItem.styles";
 
-const ResultItem = ({ name, image }) => {
+const ResultItem = ({ name, image, ...rest }) => {
   return (
-    <Wrapper>
+    <Wrapper {...rest}>
       <Image src={image} />
       <Name>{name}</Name>
     </Wrapper>

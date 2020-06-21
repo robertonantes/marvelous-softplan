@@ -18,16 +18,16 @@ const CharacterDetails = ({ data }) => {
         <Description>{description || "No description available"}</Description>
         <AppearsOn>
           <p data-testid="comics">
-            Comics: <span>{comics.available}</span>
+            Comics: <span>{comics?.available}</span>
           </p>
           <p data-testid="events">
-            Events: <span>{events.available}</span>
+            Events: <span>{events?.available}</span>
           </p>
           <p data-testid="series">
-            Series: <span>{series.available}</span>
+            Series: <span>{series?.available}</span>
           </p>
           <p data-testid="stories">
-            Stories: <span>{stories.available}</span>
+            Stories: <span>{stories?.available}</span>
           </p>
         </AppearsOn>
       </Details>

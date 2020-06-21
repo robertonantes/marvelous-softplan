@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { debounce } from "throttle-debounce";
+import React, { useEffect, useRef, useState } from "react";
 
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
-import { Container, Logo } from "./Search.styles";
+import { Container } from "./Search.styles";
 import * as services from "./Search.services";
 
 const Search = () => {
   const [term, setTerm] = useState("");
-  const [error, setError] = useState(null);
   const [results, setResults] = useState([]);
+  const [open, setOpen] = useState(false);
   const [searching, setSearching] = useState(false);
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    function bindedListener(event) {
+      if (services.clickedOutside(event, containerRef)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", bindedListener);
+    return () => {
+      document.removeEventListener("mousedown", bindedListener);
+    };
+  }, [containerRef]);
 
   useEffect(() => {
     if (services.isSearchAllowed(term)) {
@@ -20,10 +33,10 @@ const Search = () => {
 
   function fetchCharacters() {
     setSearching(true);
+    setOpen(true);
 
     services.debouncedFetch(term, {
       onSuccess: (data) => setResults(data),
-      onError: (error) => setError(error),
       onDone: () => setSearching(false),
     });
   }
@@ -33,17 +46,34 @@ const Search = () => {
     setTerm(target.value);
   }
 
+  function onSearchFocus(e) {
+    const { target } = e;
+    if (services.isSearchAllowed(target.value)) {
+      setOpen(true);
+    }
+  }
+
+  function onResultClick() {
+    setOpen(false);
+  }
+
   function renderSearchResults() {
-    if (!services.isSearchAllowed(term)) {
+    if (!services.isSearchAllowed(term) || !open) {
       return null;
     }
 
-    return <SearchResults loading={searching} results={results} />;
+    return (
+      <SearchResults
+        loading={searching}
+        results={results}
+        onResultClick={onResultClick}
+      />
+    );
   }
 
   return (
-    <Container>
-      <SearchForm onChange={onTermChange} />
+    <Container ref={containerRef}>
+      <SearchForm onChange={onTermChange} onFocus={onSearchFocus} />
       {renderSearchResults()}
     </Container>
   );

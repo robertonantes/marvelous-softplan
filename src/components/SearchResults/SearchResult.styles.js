@@ -14,3 +14,7 @@ export const Wrapper = styled.div`
   padding: 8px;
   background-color: #232323;
 `;
+
+export const EmptyText = styled.p`
+  color: #fff;
+`;
