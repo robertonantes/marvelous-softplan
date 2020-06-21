@@ -20,6 +20,8 @@ const Character = () => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    setReady(false);
+
     async function fetchData() {
       const response = await fetchCharacterDetails(id, {});
       setData(response.data[0]);
