@@ -8,8 +8,10 @@ import {
   fetchCharacterDetails,
   fetchCharacterSeries,
 } from "../../common/services";
+
 import CharacterDetails from "../../components/CharacterDetails";
-import CharacterSeries from "../../components/CharacterSeries";
+import SeriesList from "../../components/SeriesList";
+import Skeleton from "./fragments/Skeleton.fragment";
 
 const Character = () => {
   const { id } = useParams();
@@ -28,13 +30,16 @@ const Character = () => {
   }
 
   async function fetchSeries() {
-    const response = await fetchCharacterSeries(id, { limit: 24 });
+    const response = await fetchCharacterSeries(id, {
+      limit: 24,
+      orderBy: "-modified",
+    });
     setSeries(response.data);
     setReady(true);
   }
 
   if (!ready) {
-    return <p>Carregando...</p>;
+    return <Skeleton />;
   }
 
   return (
@@ -46,7 +51,7 @@ const Character = () => {
       </Row>
       <Row>
         <Col className="mt-5">
-          <CharacterSeries data={series} />
+          <SeriesList data={series} />
         </Col>
       </Row>
     </Container>

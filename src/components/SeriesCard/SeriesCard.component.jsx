@@ -2,10 +2,10 @@ import React from "react";
 
 import { Wrapper, Image, Title } from "./SeriesCard.styles";
 
-const SeriesCard = ({ img, title }) => {
+const SeriesCard = ({ image, title }) => {
   return (
     <Wrapper>
-      <Image src={img} />
+      <Image data-testid="series-image" src={image} />
       <Title title={title}>{title}</Title>
     </Wrapper>
   );
