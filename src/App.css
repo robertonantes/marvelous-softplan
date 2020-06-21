@@ -16,9 +16,11 @@ html * {
 }
 
 body {
+  min-height: 100vh;
   background-color: #000;
   position: relative;
   padding-top: 72px;
+  padding-bottom: 80px;
 }
 
 body::before {

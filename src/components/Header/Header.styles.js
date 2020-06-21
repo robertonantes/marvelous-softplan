@@ -16,4 +16,5 @@ export const Flex = styled.div`
 export const Logo = styled.img`
   height: 40px;
   margin-right: 40px;
+  cursor: pointer;
 `;
