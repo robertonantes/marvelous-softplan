@@ -1,6 +1,8 @@
 import React from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+import store from "./store/store";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -12,14 +14,16 @@ import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/character/:id" component={Character} exact />
-      </Switch>
-      <Footer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/character/:id" component={Character} exact />
+        </Switch>
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   );
 }
 
