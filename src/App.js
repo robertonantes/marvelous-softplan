@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import store from "./store/store";
+import store from "./store";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
