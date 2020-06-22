@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterDetails Component Renders character info 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm bveoqz"
+    data-testid="character-details"
+  >
+    <div
+      class="sc-AxirZ ktnnZK"
+    >
+      <h1
+        class="sc-AxiKw fiNdPj"
+      >
+        Character Name
+      </h1>
+      <p
+        class="sc-AxhCb iWgTaJ"
+      >
+        Character description
+      </p>
+      <div
+        class="sc-AxhUy kuUQZX"
+      >
+        <p
+          data-testid="comics"
+        >
+          Comics: 
+          <span>
+            10
+          </span>
+        </p>
+        <p
+          data-testid="events"
+        >
+          Events: 
+          <span>
+            13
+          </span>
+        </p>
+        <p
+          data-testid="series"
+        >
+          Series: 
+          <span>
+            11
+          </span>
+        </p>
+        <p
+          data-testid="stories"
+        >
+          Stories: 
+          <span>
+            12
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      class="sc-AxgMl fFPQpl"
+    >
+      <img
+        class="sc-AxheI GFOKx"
+        data-testid="character-image"
+        height="420px"
+        src="imagepath.jpg"
+        width="420px"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

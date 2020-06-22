@@ -1,38 +1,36 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "AdamWarren";
+  src: url("./assets/fonts/adamwarrenpro.ttf") format("truetype");
+  font-weight: 300;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: "AdamWarren";
+  src: url("./assets/fonts/adamwarrenpro-bold.ttf") format("truetype");
+  font-weight: 500;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html * {
+  box-sizing: border-box;
+  font-family: "AdamWarren";
 }
 
-.App-header {
-  background-color: #282c34;
+body {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #000;
+  position: relative;
+  padding-top: 72px;
+  padding-bottom: 80px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body::before {
+  content: "";
+  background-image: url("./assets/images/bg.jpg");
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultItem Component Renders result info 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm KEoCo"
+    title="prop"
+  >
+    <img
+      class="sc-AxirZ iBklgE"
+      src="image-path"
+    />
+    <h4
+      class="sc-AxiKw iVJYNO"
+    >
+      Result name
+    </h4>
+  </div>
+</DocumentFragment>
+`;
