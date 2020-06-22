@@ -6,9 +6,11 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
+import { Provider } from "react-redux";
 
 import * as services from "../../common/services";
 import Character from ".";
+import store from "../../store";
 
 const details = {
   name: "Character Name",
@@ -48,11 +50,13 @@ describe("Character Container", () => {
     });
 
     render(
-      <MemoryRouter initialEntries={["/character/123"]}>
-        <Route path="/character/:id" exact>
-          <Character />
-        </Route>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/character/123"]}>
+          <Route path="/character/:id" exact>
+            <Character />
+          </Route>
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(screen.getByTestId("character-skeleton")).toBeInTheDocument();
@@ -77,11 +81,14 @@ describe("Character Container", () => {
     });
 
     render(
-      <MemoryRouter initialEntries={["/character/123"]}>
-        <Route path="/character/:id" exact>
-          <Character />
-        </Route>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/character/123"]}>
+          <Route path="/character/:id" exact>
+            <Character />
+          </Route>
+          https://github.com/robertonantes/marvelous-softplan
+        </MemoryRouter>
+      </Provider>
     );
 
     await waitForElementToBeRemoved(() =>

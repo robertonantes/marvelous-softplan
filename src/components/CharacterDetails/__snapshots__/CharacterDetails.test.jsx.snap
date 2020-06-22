@@ -3,24 +3,24 @@
 exports[`CharacterDetails Component Renders character info 1`] = `
 <DocumentFragment>
   <div
-    class="sc-AxjAm bveoqz"
+    class="sc-AxiKw cGtQMs"
     data-testid="character-details"
   >
     <div
-      class="sc-AxirZ ktnnZK"
+      class="sc-AxhCb jZxptO"
     >
       <h1
-        class="sc-AxiKw fiNdPj"
+        class="sc-AxhUy hTMfeP"
       >
         Character Name
       </h1>
       <p
-        class="sc-AxhCb iWgTaJ"
+        class="sc-AxgMl iaKBpG"
       >
         Character description
       </p>
       <div
-        class="sc-AxhUy kuUQZX"
+        class="sc-AxheI dXqNRb"
       >
         <p
           data-testid="comics"
@@ -57,10 +57,10 @@ exports[`CharacterDetails Component Renders character info 1`] = `
       </div>
     </div>
     <div
-      class="sc-AxgMl fFPQpl"
+      class="sc-Axmtr hBVTto"
     >
       <img
-        class="sc-AxheI GFOKx"
+        class="sc-AxmLO hypiLP"
         data-testid="character-image"
         height="420px"
         src="imagepath.jpg"
