@@ -6,7 +6,12 @@ import {
   START_EDITING,
   EDITING_COMPLETE,
 } from "./types";
+
 import { fetchCharacters } from "../../common/services";
+import {
+  getCustomCharacters,
+  mergeCustomCharacters,
+} from "../../common/helpers";
 
 export function fetchLatestCharacters() {
   return async function (dispatch) {
@@ -16,7 +21,10 @@ export function fetchLatestCharacters() {
       limit: 20,
     };
     const response = await fetchCharacters(options);
-    dispatch({ type: CHARACTERS_LOADED, payload: response.data });
+    dispatch({
+      type: CHARACTERS_LOADED,
+      payload: mergeCustomCharacters(response.data),
+    });
   };
 }
 
@@ -40,5 +48,10 @@ export function startEditing() {
 }
 
 export function editingComplete(payload) {
+  const custom = getCustomCharacters();
+  const { id } = payload;
+  custom[id] = { ...payload };
+  sessionStorage.setItem("customCharacters", JSON.stringify(custom));
+
   return { type: EDITING_COMPLETE, payload };
 }

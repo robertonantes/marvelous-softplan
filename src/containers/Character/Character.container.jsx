@@ -9,6 +9,8 @@ import {
   fetchCharacterSeries,
 } from "../../common/services";
 
+import { mergeDetails } from "../../common/helpers";
+
 import CharacterDetails from "../../components/CharacterDetails";
 import SeriesList from "../../components/SeriesList";
 import CharacterSkeleton from "./fragments/CharacterSkeleton.fragment";
@@ -24,7 +26,7 @@ const Character = () => {
 
     async function fetchData() {
       const response = await fetchCharacterDetails(id, {});
-      setData(response.data[0]);
+      setData(mergeDetails(response.data[0]));
     }
 
     async function fetchSeries() {

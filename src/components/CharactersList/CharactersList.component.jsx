@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import SuperHeroCard from "../SuperHeroCard";
 import { List, Item } from "./CharactersList.styles";
-import { assembleImageUrl } from "../../common/utils";
+import { assembleImageUrl } from "../../common/helpers";
 
 const CharactersList = ({ items }) => {
   const history = useHistory();

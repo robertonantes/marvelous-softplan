@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { editingComplete } from "../../store/actions";
 import { Form, NameInput } from "./EditCharacterForm.styles";
 
-const EditCharacterForm = ({ data }) => {
+const EditCharacterForm = ({ data, onComplete }) => {
   const dispatch = useDispatch();
   const { id, name } = data;
   const inputRef = useRef(null);
@@ -22,11 +22,22 @@ const EditCharacterForm = ({ data }) => {
   function onSubmit(e) {
     e.preventDefault();
     dispatch(editingComplete({ id, name: value }));
+    onComplete(value);
+  }
+
+  function onBlur() {
+    dispatch(editingComplete({ id, name: value }));
   }
 
   return (
     <Form onSubmit={onSubmit}>
-      <NameInput type="text" value={value} onChange={onChange} ref={inputRef} />
+      <NameInput
+        type="text"
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        ref={inputRef}
+      />
     </Form>
   );
 };
