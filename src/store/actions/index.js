@@ -14,7 +14,6 @@ export function fetchLatestCharacters() {
       limit: 20,
     };
     const response = await fetchCharacters(options);
-    console.log(response);
     dispatch({ type: CHARACTERS_LOADED, payload: response.data });
   };
 }

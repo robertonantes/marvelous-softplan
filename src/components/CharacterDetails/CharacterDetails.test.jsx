@@ -37,7 +37,6 @@ describe("CharacterDetails Component", () => {
     expect(screen.getByText(/no description available/i)).toBeInTheDocument();
   });
 
-  //Snapshot testing (This is the only time its used in this project);
   it("Renders character info", () => {
     const data = mockData();
     const { asFragment } = render(<CharacterDetails data={data} />);

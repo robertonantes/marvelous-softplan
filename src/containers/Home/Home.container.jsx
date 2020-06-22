@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 
 import { fetchLatestCharacters } from "../../store/actions";
 
-import CardsList from "../../components/CardsList";
+import CharactersList from "../../components/CharactersList";
 import HomeSkeleton from "./fragments/HomeSkeleton.fragment";
 import { Title } from "./Home.styles";
 
@@ -23,11 +23,11 @@ const Home = () => {
   }
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" data-testid="home-list">
       <Row>
         <Col>
           <Title>Last updated Characters</Title>
-          <CardsList items={list} />;
+          <CharactersList items={list} />;
         </Col>
       </Row>
     </Container>

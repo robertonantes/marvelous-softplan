@@ -2,14 +2,11 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import SuperHeroCard from "../SuperHeroCard";
-import { List, Item } from "./CardsList.styles";
+import { List, Item } from "./CharactersList.styles";
+import { assembleImageUrl } from "../../common/utils";
 
-const CardsList = ({ items }) => {
+const CharactersList = ({ items }) => {
   const history = useHistory();
-
-  function assembleImageUrl(thumbnail) {
-    return `${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`;
-  }
 
   return (
     <List>
@@ -17,7 +14,10 @@ const CardsList = ({ items }) => {
         const { id, name, thumbnail } = i;
         return (
           <Item onClick={() => history.push(`/character/${id}`)} key={id}>
-            <SuperHeroCard name={name} image={assembleImageUrl(thumbnail)} />
+            <SuperHeroCard
+              name={name}
+              image={assembleImageUrl(thumbnail, "portrait_uncanny")}
+            />
           </Item>
         );
       })}
@@ -25,4 +25,4 @@ const CardsList = ({ items }) => {
   );
 };
 
-export default CardsList;
+export default CharactersList;

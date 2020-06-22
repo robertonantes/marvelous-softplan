@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuperHeroCard Component Renders card info 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm dzwwRQ"
+    data-testid="hero-image"
+  >
+    <h3
+      class="sc-AxirZ ijJWiI"
+    >
+      Hero name
+    </h3>
+  </div>
+</DocumentFragment>
+`;

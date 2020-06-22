@@ -25,7 +25,7 @@ export const Item = styled.li`
 
 const HomeSkeleton = () => {
   return (
-    <Container data-testid="character-skeleton">
+    <Container data-testid="home-skeleton">
       <Row>
         <Col className="mt-5">
           <LoadingSkeleton
