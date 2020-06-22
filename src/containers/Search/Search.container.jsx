@@ -1,17 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { debounce } from "throttle-debounce";
 
+import { searchCharacters } from "../../store/actions";
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
 import { Container } from "./Search.styles";
 import * as services from "./Search.services";
 
-const Search = () => {
-  const [term, setTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [searching, setSearching] = useState(false);
+const debounced = debounce(500, true, (term, dispatch) => {
+  dispatch(searchCharacters(term));
+});
 
+const Search = () => {
+  const dispatch = useDispatch();
+  const { list, isSearching } = useSelector((state) => state.search);
   const containerRef = useRef(null);
+
+  const [term, setTerm] = useState("");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     function bindedListener(event) {
@@ -27,19 +34,10 @@ const Search = () => {
 
   useEffect(() => {
     if (services.isSearchAllowed(term)) {
-      fetchCharacters();
+      debounced(term, dispatch);
+      setOpen(true);
     }
   }, [term]);
-
-  function fetchCharacters() {
-    setSearching(true);
-    setOpen(true);
-
-    services.debouncedFetch(term, {
-      onSuccess: (data) => setResults(data),
-      onDone: () => setSearching(false),
-    });
-  }
 
   function onTermChange(e) {
     const { target } = e;
@@ -64,8 +62,8 @@ const Search = () => {
 
     return (
       <SearchResults
-        loading={searching}
-        results={results}
+        loading={isSearching}
+        results={list}
         onResultClick={onResultClick}
       />
     );

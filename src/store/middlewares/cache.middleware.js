@@ -1,6 +1,6 @@
 import { FETCH_CHARACTERS } from "../actions/types";
 
-export function cacheLatestCharacters({ dispatch, getState }) {
+export function cacheLatestCharacters({ getState }) {
   return function (next) {
     return function (action) {
       if (action.type === FETCH_CHARACTERS) {

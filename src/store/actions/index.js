@@ -1,19 +1,35 @@
-import { CHARACTERS_LOADED, FETCH_CHARACTERS } from "./types";
+import {
+  CHARACTERS_LOADED,
+  FETCH_CHARACTERS,
+  SEARCH_CHARACTERS,
+  SEARCH_COMPLETED,
+} from "./types";
+import { fetchCharacters } from "../../common/services";
 
 export function fetchLatestCharacters() {
   return async function (dispatch) {
     dispatch({ type: FETCH_CHARACTERS });
+    const options = {
+      orderBy: "-modified",
+      limit: 20,
+    };
+    const response = await fetchCharacters(options);
+    console.log(response);
+    dispatch({ type: CHARACTERS_LOADED, payload: response.data });
+  };
+}
 
-    try {
-      const response = await fetch(
-        "https://gateway.marvel.com/v1/public/characters?orderBy=-modified&limit=20&apikey=a2ac89dc440fae737de7ea65bf7b3f11"
-      );
-      const json = await response.json();
-      const { data } = json;
+export function searchCharacters(term) {
+  return async function (dispatch) {
+    dispatch({ type: SEARCH_CHARACTERS });
 
-      dispatch({ type: CHARACTERS_LOADED, payload: data.results });
-    } catch (e) {
-      console.log(e);
-    }
+    const options = {
+      nameStartsWith: term,
+      orderBy: "name",
+      limit: 5,
+    };
+
+    const response = await fetchCharacters(options);
+    dispatch({ type: SEARCH_COMPLETED, payload: response.data });
   };
 }

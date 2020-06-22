@@ -1,12 +1,10 @@
-export async function fetchCharacters(options = {}) {
+export async function fetchServiceData(endpoint, options) {
   try {
     const querystring = require("query-string");
 
     const stringified = querystring.stringify(options);
-    const key = "a2ac89dc440fae737de7ea65bf7b3f11";
-    const MARVEL_SERVICE = "https://gateway.marvel.com/v1/public";
     const response = await fetch(
-      `${MARVEL_SERVICE}/characters?${stringified}&apikey=${key}`
+      `${process.env.REACT_APP_MARVEL_SERVICE}${endpoint}?${stringified}&apikey=${process.env.REACT_APP_API_KEY}`
     );
     const json = await response.json();
     const { data } = json;
@@ -15,42 +13,16 @@ export async function fetchCharacters(options = {}) {
   } catch (e) {
     return { success: false, error: e };
   }
+}
+
+export async function fetchCharacters(options = {}) {
+  return fetchServiceData("/characters", options);
 }
 
 export async function fetchCharacterDetails(id, options = {}) {
-  try {
-    const querystring = require("query-string");
-
-    const stringified = querystring.stringify(options);
-    const key = "a2ac89dc440fae737de7ea65bf7b3f11";
-    const MARVEL_SERVICE = "https://gateway.marvel.com/v1/public";
-    const response = await fetch(
-      `${MARVEL_SERVICE}/characters/${id}?${stringified}&apikey=${key}`
-    );
-    const json = await response.json();
-    const { data } = json;
-
-    return { success: true, data: data.results };
-  } catch (e) {
-    return { success: false, error: e };
-  }
+  return fetchServiceData(`/characters/${id}`, options);
 }
 
 export async function fetchCharacterSeries(id, options = {}) {
-  try {
-    const querystring = require("query-string");
-
-    const stringified = querystring.stringify(options);
-    const key = "a2ac89dc440fae737de7ea65bf7b3f11";
-    const MARVEL_SERVICE = "https://gateway.marvel.com/v1/public";
-    const response = await fetch(
-      `${MARVEL_SERVICE}/characters/${id}/series?${stringified}&apikey=${key}`
-    );
-    const json = await response.json();
-    const { data } = json;
-
-    return { success: true, data: data.results };
-  } catch (e) {
-    return { success: false, error: e };
-  }
+  return fetchServiceData(`/characters/${id}/series`, options);
 }
