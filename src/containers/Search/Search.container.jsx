@@ -37,7 +37,7 @@ const Search = () => {
       debounced(term, dispatch);
       setOpen(true);
     }
-  }, [term]);
+  }, [term, dispatch]);
 
   function onTermChange(e) {
     const { target } = e;

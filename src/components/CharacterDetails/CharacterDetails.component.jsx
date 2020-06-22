@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import EditCharacterForm from "../EditCharacterForm";
+import { startEditing } from "../../store/actions";
 import {
   Wrapper,
   Details,
@@ -11,10 +14,21 @@ import {
 
 const CharacterDetails = ({ data }) => {
   const { name, description, comics, series, stories, events } = data;
+
+  const { isEditing } = useSelector((state) => state.edit);
+  const dispatch = useDispatch();
+
+  function onNameDoubleClick() {
+    dispatch(startEditing());
+  }
+
   return (
     <Wrapper data-testid="character-details">
       <Details>
-        <Name>{name}</Name>
+        {isEditing ? <EditCharacterForm data={data} /> : null}
+        <Name onDoubleClick={onNameDoubleClick} isEditing={isEditing}>
+          {name}
+        </Name>
         <Description>{description || "No description available"}</Description>
         <AppearsOn>
           <p data-testid="comics">

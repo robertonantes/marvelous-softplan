@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchLatestCharacters());
-  }, []);
+  }, [dispatch]);
 
   if (isFetching) {
     return <HomeSkeleton />;

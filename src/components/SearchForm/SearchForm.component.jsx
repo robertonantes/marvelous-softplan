@@ -7,7 +7,7 @@ const SearchForm = ({ onChange, onFocus }) => {
     <Form>
       <TextInput placeholder="Search" onChange={onChange} onFocus={onFocus} />
       <Button>
-        <img src={searchIcon} />
+        <img src={searchIcon} alt="Search character" />
       </Button>
     </Form>
   );

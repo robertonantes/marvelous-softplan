@@ -3,6 +3,8 @@ import {
   FETCH_CHARACTERS,
   SEARCH_CHARACTERS,
   SEARCH_COMPLETED,
+  START_EDITING,
+  EDITING_COMPLETE,
 } from "./types";
 import { fetchCharacters } from "../../common/services";
 
@@ -31,4 +33,12 @@ export function searchCharacters(term) {
     const response = await fetchCharacters(options);
     dispatch({ type: SEARCH_COMPLETED, payload: response.data });
   };
+}
+
+export function startEditing() {
+  return { type: START_EDITING };
+}
+
+export function editingComplete(payload) {
+  return { type: EDITING_COMPLETE, payload };
 }
